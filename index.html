@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>移动设备滑动插件</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta
+      content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+      name="viewport"
+    />
+
+    <style>
+      .slide-main {
+        position: relative;
+        overflow: hidden;
+      }
+      .slide-main .slide-content {
+        position: relative;
+      }
+      .slide-main .slide-content img,
+      .slide-main .slide-content a {
+        display: block;
+        border: 0;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+      .slide-main .slide-content .slide-item {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+      }
+      .slide-main .slide-content .current {
+        z-index: 1;
+      }
+      .slide-main .slide-control {
+        position: absolute;
+        bottom: 10px;
+        height: 10px;
+        z-index: 2;
+        left: 50%;
+      }
+      .slide-main .slide-control span {
+        display: block;
+        float: left;
+        width: 10px;
+        height: 10px;
+        margin: 0 2px;
+        border-radius: 50%;
+        background-color: #999;
+      }
+      .slide-main .slide-control span.selected {
+        background-color: orange;
+      }
+    </style>
+    <script src="zepto.js"></script>
+    <script src="touch-slider.js"></script>
+  </head>
+  <body>
+    <div id="J_TouchSlide" class="slide-main">
+      <div class="slide-content">
+        <div class="slide-item current">
+          <a href="#a"><img src="images/4.jpg" height="100%" width="100%"/></a>
+        </div>
+        <div class="slide-item">
+          <a href="javascript:;"
+            ><img data-src="images/2.jpg" height="100%" width="100%"
+          /></a>
+        </div>
+        <div class="slide-item">
+          <a href="javascript:;"
+            ><img data-src="images/1.jpg" height="100%" width="100%"
+          /></a>
+        </div>
+        <div class="slide-item">
+          <a href="javascript:;"
+            ><img data-src="images/1.jpg" height="100%" width="100%"
+          /></a>
+        </div>
+        <div class="slide-item">
+          <a href="javascript:;"
+            ><img data-src="images/4.jpg" height="100%" width="100%"
+          /></a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      $(function() {
+        var touchSlide = new TouchSlide($('#J_TouchSlide'), {
+          width: 320,
+          height: 138,
+          //isShowBtns:"no", //是否显示控制按钮
+          autoPlay: true, //是否自动播放
+          // autoTime:5000,	//自动播放的时间
+          speed: 400, //300毫秒切换速度
+          callBack: function(elem) {
+            //每一帧切换完毕后触发该函数,elem参数则是当前切换的帧(即.slide-item)
+            console.log(elem.index());
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
